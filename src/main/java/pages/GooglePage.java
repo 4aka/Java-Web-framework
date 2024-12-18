@@ -1,5 +1,6 @@
 package pages;
 
+import enums.Tabs;
 import framework.Keywords;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
@@ -25,6 +26,9 @@ public class GooglePage extends BasePage {
     @FindBy(xpath = "//*[@id=\"rso\"]/div")
     private List<WebElement> firstResult;
 
+    @FindBy(xpath = "//*[@id=\"hdtb-sc\"]//*[text()=\"All\"]")
+    private WebElement all_tab;
+
 
     @Step("Input search parameters: {0}")
     public void inputSearchParameters(String searchParams) {
@@ -43,5 +47,18 @@ public class GooglePage extends BasePage {
         waitUntilListIsNotEmpty(xpath);
         return search_result;
     }
+
+    public WebElement getTab(Tabs tab) {
+        String xpath = "//*[@id=\"hdtb-sc\"]//*[text()=\"" + tab.getTab() + "\"]";
+
+        waitUntilVisible(all_tab);
+        return getDriver().findElement(By.xpath(xpath));
+    }
+
+    public Boolean assertThatSearchContainsUrl(String url) {
+        String xpath = "//*[@id=\"search\"]//*[text()=\"" + url + "\"]";
+        return getDriver().findElement(By.xpath(xpath)).isDisplayed();
+    }
+
 
 }
