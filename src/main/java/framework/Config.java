@@ -5,12 +5,8 @@ import static framework.PropertyLoader.retrieveProperty;
 public class Config {
 
     public static int timeout = Integer.parseInt(PropertyLoader.getProperty("timeout"));
-
     public static Platform platform = Platform.valueOf(retrieveProperty("webdriver.platform"));
-
-    public static String appiumURL = PropertyLoader.getProperty("appium.url");
-    public static String androidAppPath = PropertyLoader.getProperty("android.appPath");
-    public static String androidDeviceName = PropertyLoader.getProperty("android.deviceName");
+    public static String baseUrl = PropertyLoader.getProperty("base.url");
 
 }
 
