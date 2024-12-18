@@ -15,7 +15,15 @@ public class PlatformFactory {
 
             case CHROME:
                 WebDriverManager.chromedriver().setup();
-                driver.set(new ChromeDriver());
+
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--lang=eng");
+                options.addArguments("--accept-lang=qps-ploc,en-us,en");
+                options.addArguments("start-maximized");
+                options.addArguments("disable-popup-blocking");
+
+
+                driver.set(new ChromeDriver(options));
                 break;
         }
     }
